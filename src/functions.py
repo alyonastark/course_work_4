@@ -4,7 +4,7 @@ def filter_vacancies(vacancies, filter_words):
     """Фильтрует вакансии по ключевым словам в требованиях"""
     filtered_vacancies = []
     for vacancy in vacancies:
-        if filter_words.lower() in vacancy.requirement.lower():
+        if filter_words.lower() in vacancy.title.lower():
             filtered_vacancies.append(vacancy)
     return filtered_vacancies
 
@@ -27,8 +27,19 @@ def get_vacancies_by_salary(filtered_vacancies, salary_range):
 def get_top_vacancies(sorted_vacancies, top_n):
     """Выдает n количество лучших вакансий"""
     top_vacancies = []
-    for i in range(top_n):
-        top_vacancies.append(sorted_vacancies[i])
+    try:
+        for i in range(top_n):
+            top_vacancies.append(sorted_vacancies[i])
+    except IndexError:
+        pass
     return top_vacancies
+
+
+def print_vacancies(vacancies):
+    """Выводит отобранные вакансии"""
+    for vacancy in vacancies:
+        vacancy_dict = vacancy.__dict__
+        for value in vacancy_dict:
+            print(vacancy_dict[value])
 
 
