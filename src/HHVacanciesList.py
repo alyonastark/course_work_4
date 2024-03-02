@@ -22,12 +22,7 @@ class HHVacanciesList(AbstractApi):
 
     def get_vacancies(self):
         """Получает список вакансий"""
-        response = requests.get('https://api.hh.ru/vacancies', {'text': self.vacancy, 'per_page': 100})
+        response = requests.get('https://api.hh.ru/vacancies', {'text': self.vacancy, 'per_page': 10, 'area': 113})
         vacancies = json.loads(response.text)['items']
         return vacancies
 
-
-
-example = HHVacanciesList('python')
-list = example.get_vacancies()
-print(list)
