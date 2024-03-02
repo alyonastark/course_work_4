@@ -1,7 +1,10 @@
+import json
+
 from src.HHVacanciesList import HHVacanciesList
 from src.Vacancy import Vacancy
 from src.JSONSaver import JSONSaver
 from src.functions import filter_vacancies, get_vacancies_by_salary, get_top_vacancies, print_vacancies
+
 
 
 def user_interaction():
@@ -28,4 +31,5 @@ def user_interaction():
 
 if __name__ == "__main__":
    user_interaction()
+
 

@@ -11,9 +11,13 @@ class Vacancy:
         self.requirement = requirement
 
 
+    def __repr__(self):
+        return f'{self.title}: {self.salary}, {self.requirement}, {self.url}'
+
+
     @classmethod
     def cast_to_list(self, vacancies):
-        """Преобразует информацию из формата json в список"""
+        """Преобразует информацию из формата json в список объектов"""
         self.all_vacancies.clear()
         for vacancy in vacancies:
             title = vacancy['name']
