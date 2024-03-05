@@ -41,5 +41,3 @@ def print_vacancies(vacancies):
         vacancy_dict = vacancy.__dict__
         for value in vacancy_dict:
             print(vacancy_dict[value])
-
-

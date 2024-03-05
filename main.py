@@ -1,10 +1,7 @@
-import json
-
 from src.HHVacanciesList import HHVacanciesList
 from src.Vacancy import Vacancy
-from src.JSONSaver import JSONSaver
-from src.functions import filter_vacancies, get_vacancies_by_salary, get_top_vacancies, print_vacancies
-
+from src.functions import filter_vacancies, get_vacancies_by_salary
+from src.functions import get_top_vacancies, print_vacancies
 
 
 def user_interaction():
@@ -20,16 +17,16 @@ def user_interaction():
     hh_vacancies = hh_api.get_vacancies()
     vacancies_list = Vacancy.cast_to_list(hh_vacancies)
 
+    # Отфильтровываем вакансии по ключевым словам и зп
     filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
+    ranged_vacancies = get_vacancies_by_salary(filtered_vacancies,
+                                               salary_range)
 
-    ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
-
+    # Сортируем и выводим топ N
     sorted_vacancies = sorted(ranged_vacancies)
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
     print_vacancies(top_vacancies)
 
 
 if __name__ == "__main__":
-   user_interaction()
-
-
+    user_interaction()
